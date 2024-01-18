@@ -19,6 +19,7 @@ class ImageBgImage extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0.0,
+              foregroundColor: Colors.white,
             ),
             // bottomNavigationBar: Container(
             //   padding:const EdgeInsets.only(left: 4.0, right: 4.0),
@@ -79,6 +80,19 @@ class ImageBgImage extends StatelessWidget {
                           ]),
                     ),
 
+                  Row(
+                    children: [
+                    Expanded(child:Image.network('https://picsum.photos/200/300',width:
+                      200) ),
+
+                    Expanded(flex: 2, child:Image.network('https://picsum.photos/200/300',width:
+                    200,) ),
+
+                    Expanded(child:Image.network('https://picsum.photos/200/300',width:
+                    200) ),
+
+
+                  ],),
                   // ClipRRect(
                   //   borderRadius: BorderRadius.circular(15),
                   //   child: Image.network('https://picsum.photos/200',
