@@ -34,6 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  font_awesome_flutter: ^10.6.0
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +99,20 @@ flutter:
           weight: 600
         - asset: fonts/Raleway-Bold.ttf
           weight: 700
+
+    - family: Comfortaa
+      fonts:
+        - asset: fonts/Comfortaa-Bold.ttf
+          weight: 700
+        - asset: fonts/Comfortaa-Light.ttf
+          weight: 300
+        - asset: fonts/Comfortaa-Medium.ttf
+          weight: 500
+        - asset: fonts/Comfortaa-Regular.ttf
+          weight: 400
+        - asset: fonts/Comfortaa-SemiBold.ttf
+          weight: 600
+
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
