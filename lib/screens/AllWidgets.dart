@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:testapp/screens/AllButtons.dart';
 import 'package:testapp/screens/ImageBgImage.dart';
+import 'package:testapp/screens/listview/ListViewPractice.dart';
 import 'package:testapp/screens/RowColumns.dart';
 
 class AllWidgets extends StatelessWidget {
@@ -76,10 +77,20 @@ backgroundColor: Colors.black,
                 ),
                 ) ,
               ),
-SizedBox(height: 10,),
+            const SizedBox(height: 10,),
               ElevatedButton(onPressed: (){
                 Navigator.of(context).push(_createRoute(const RowsColumns()));
-              }, child:Text('RowsColumns'))
+              }, child:Text('RowsColumns')),
+              const SizedBox(height: 10,),
+
+              OutlinedButton(onPressed: (){
+                Navigator.of(context).push(_createRoute(ListViewPractice()));
+              }, child: Text("ListView"),style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.brown,
+                fixedSize: Size(300, 40),
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+              ),)
 
 
             ],

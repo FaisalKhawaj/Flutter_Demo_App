@@ -68,13 +68,13 @@ class _ButtonsState extends State<Buttons> {
                     style: TextButton.styleFrom(shape: const CircleBorder()),
                     child: const Icon(Icons.access_time))),
             const Text('OutlinedButton'),
-            Center(
-                child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        side: const BorderSide(width: 1, color: Colors.black)),
-                    child: const Icon(Icons.access_time))),
+            // Center(
+            //     child: OutlinedButton(
+            //         onPressed: () {},
+            //         style: OutlinedButton.styleFrom(
+            //             shape: const CircleBorder(),
+            //             side: const BorderSide(width: 1, color: Colors.black)),
+            //         child: const Icon(Icons.access_time))),
             IconButton(
                 onPressed: () {},
                 icon: const Icon(

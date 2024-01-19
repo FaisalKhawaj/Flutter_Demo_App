@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:testapp/widgets/custombuttons.dart';
 
 class AllButtons extends StatefulWidget {
   const AllButtons({super.key});
@@ -148,6 +149,15 @@ class _AllButtonsState extends State<AllButtons> {
                         )),
                   ],
                 )),
+            
+            CustomButtons(name: 'CustomButton',
+              icon:Icon(Icons.mail),
+            backgroundColor: Colors.brown,
+              callback: (){
+              print('Hello');
+              },
+              // textStyle: mTe,
+            )
           ],
         ),
       ),
