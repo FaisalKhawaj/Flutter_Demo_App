@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:testapp/screens/listview/VerticalCard.dart';
 
 class ListViewPractice extends StatelessWidget {
   ListViewPractice({super.key});
@@ -12,6 +14,7 @@ List <String> productsList=['https://picsum.photos/200','https://picsum.photos/i
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           "ListView",
@@ -20,100 +23,142 @@ List <String> productsList=['https://picsum.photos/200','https://picsum.photos/i
         centerTitle: false,
         // leading: ,
       ),
-      body: Column(
-            children: [
-             Container(
-               height: 210,
-               color: Colors.red,
-               padding:const EdgeInsets.symmetric(horizontal: 10),
-               child:  ListView.builder(
-                 itemCount: products.length,
-                 shrinkWrap: false,
-                 scrollDirection: Axis.horizontal,
-                 itemBuilder: (context,index){
-                   return Container(
-                       width: MediaQuery.of(context).size.width/2,
-                       margin:const EdgeInsets.only(right: 10),
-                       decoration:const BoxDecoration(
-                         shape: BoxShape.rectangle,
-                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                           boxShadow: [
-                       BoxShadow(
-                       color: Colors.white, // Color of the shadow
-                     spreadRadius: 1,  // Spread radius
-                     blurRadius: 1,  // Blur radius
-                     offset: Offset(1, 1),  // Offset in x and y directions
-                   ),
-                           ],
-
-                         color: Colors.white,
-                       ),
-
-                       child: Column(
-                         children: [
-                           ClipRRect(
-                             borderRadius: BorderRadius.only( topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
-                             child:  Image.network('https://picsum.photos/200/300',
-                               width: MediaQuery.of(context).size.width,
-                               height: 120,
-                               fit: BoxFit.cover,
-                             ),
-                           ),
-    Container(
-       margin:const EdgeInsets.symmetric(vertical: 10) ,
-        child:
-    Column(
-      children: [
-       const Text('Nike',style: TextStyle(fontFamily: 'Poppins',fontSize: 20, fontWeight: FontWeight.w600),),
-      const Text('\$200',style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w300),),
-      ],
-    )
-    )
-                         ],
-                       )
-                   );
-                 }),),
+      body:SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Container(
+              height: 210,
+              color: Colors.white,
+              padding:const EdgeInsets.symmetric(horizontal: 10),
               child:  ListView.builder(
-                itemCount: productsList.length,
-                shrinkWrap: true,
-                physics: ScrollPhysics(parent: null),
-                // scrollDirection: Axis.vertical,
-                itemBuilder: (context,index){
-                  return Container(
-                      width: MediaQuery.of(context).size.width-20,
-                      height: 300,
-                      margin:const EdgeInsets.symmetric( vertical: 10),
-                      decoration:const BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.red,// Color of the shadow
-                            spreadRadius: 1,  // Spread radius
-                            blurRadius: 1,  // Blur radius
-                            offset: Offset(1, 1),  // Offset in x and y directions
-                          ),
-                        ],
-                        color: Colors.orange,
-                      ),
+                  itemCount: products.length,
+                  shrinkWrap: false,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context,index){
+                    return Container(
+                        width: MediaQuery.of(context).size.width/2,
+                        margin:const EdgeInsets.only(top: 4, left:4,right: 5,bottom: 4),
+                        decoration:const BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              // Color of the shadow
+                              // spreadRadius: 0.5,  // Spread radius
+                              blurRadius: 1,  // Blur radius
+                              // offset: Offset(2, 2),  // Offset in x and y directions
+                            ),
+                          ],
+                        ),
 
-                      child: ClipRRect(child: Image.network(productsList[index],
-                        width: MediaQuery.of(context).size.width,
-                        height: 200,
-                        fit: BoxFit.cover,
-                      ),
-                      )
-                  );
-                }) ,)
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.only( topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0)),
+                              child:  Image.network('https://picsum.photos/200/300',
+                                width: MediaQuery.of(context).size.width,
+                                height: 120,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding:const EdgeInsets.symmetric(horizontal: 10) ,
+                                margin:const EdgeInsets.symmetric(vertical: 10) ,
+                                child:
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Nike',style: TextStyle(fontFamily: 'Poppins',fontSize: 20, fontWeight: FontWeight.w600),),
+                                    const Text('\$200',style: TextStyle(fontFamily: 'Poppins',fontWeight: FontWeight.w300),),
+                                  ],
+                                )
+                            )
+                          ],
+                        )
+                    );
+                  }),),
+            Padding(padding: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
+            child: Text('Horizontal List With Simple Row',textAlign: TextAlign.left,),
+            ),
+           SingleChildScrollView(
+             scrollDirection: Axis.horizontal,
+             child: Row(
+               children: [
+                 Padding(padding: EdgeInsets.symmetric(horizontal: 10),child:
+                 Container(height: 200,width: 200,
+                   decoration: BoxDecoration(
+                     shape: BoxShape.rectangle,
+                       color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(10))
+                   ),
+                  )),
+                 Padding(
+                   padding: const EdgeInsets.symmetric( horizontal: 10),
+                   child: Container(height: 200,width: 200,
+                   decoration: const BoxDecoration(
+                       color: Colors.orange,
+                       shape: BoxShape.rectangle,
+                       borderRadius: BorderRadius.all(Radius.circular(10))
+                   ),
+                   ),
+                 ),
+                 Padding(
+                   padding: const EdgeInsets.symmetric( horizontal: 10),
+                   child: Container(
+                     height: 200,
+                     width: 200,
+decoration: const BoxDecoration(
+  shape: BoxShape.rectangle,
+  color: Colors.pink,
+  borderRadius: BorderRadius.all(Radius.circular(10)),
+),
 
-            ],
-          ),
+                   ),
+                 ),
+                 Padding(
+                   padding: const EdgeInsets.symmetric( horizontal: 10),
+                   child: Container(
+                       height: 200,
+                       width: 200,
+                       decoration: BoxDecoration(
+                           color: Colors.purple.shade200,
+                           shape: BoxShape.rectangle,
+                          borderRadius:const BorderRadius.all(Radius.circular(10))
+                   )
+                   ),
+                   ),
+               ],
+             ),
+           ),
+            Container(
+              height: 50,
+              alignment: Alignment.center,
+              child: Text('Vertical Card List',style: TextStyle(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500,
+                fontSize: 20
+              ),),),
+            Container(
+              margin:EdgeInsets.symmetric(horizontal: 10),
+              // width: ,
+              child:  ListView.builder(
+                  itemCount: productsList.length,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(parent: null),
+                  // scrollDirection: Axis.vertical,
+                  itemBuilder: (context,index){
+                    return VerticalCard(imageUrl: productsList[index]);
+                  }) ,)
 
-
-
-
-
+          ],
+        ),
+      )
     );
   }
 }

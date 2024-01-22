@@ -3,8 +3,6 @@ import 'package:testapp/screens/AllButtons.dart';
 import 'package:testapp/screens/AllWidgets.dart';
 import 'package:testapp/screens/onboarding.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
@@ -12,47 +10,42 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: Colors.orange,
         primaryColor: Colors.blue,
         fontFamily: 'Poppins',
+        textTheme:const TextTheme(
+          displayLarge: TextStyle(
+            fontSize: 18,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+            color: Colors.black
+          ),
+          displayMedium:  TextStyle(
+              fontSize: 14,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+              color: Colors.black
+          ),
+          displaySmall: TextStyle(
+              fontSize: 12,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w300,
+              color: Colors.black
+          ),
+
+        ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home:const AllWidgets(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-// Center => aligns its child widget to the center of available space of screen
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter App',
-      themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: false,
-      home: AllWidgets(),
-    );
-  }
-}
