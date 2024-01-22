@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:testapp/screens/AllButtons.dart';
 import 'package:testapp/screens/ImageBgImage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:testapp/screens/interest/interest.dart';
 import 'package:testapp/screens/listview/ListViewPractice.dart';
 import 'package:testapp/screens/RowColumns.dart';
 
@@ -181,7 +182,18 @@ backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                     fixedSize: Size(MediaQuery.of(context).size.width-50, 40)
                   ),
-                  onPressed: (){}, child: Text('ChefMaster App'))
+                  onPressed: (){}, child: Text('ChefMaster App')),
+              SizedBox(height: 10,),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      fixedSize: Size(MediaQuery.of(context).size.width-50, 40)
+                  ),
+                  onPressed: (){
+                    Navigator.of(context).push(_createRoute(Interests()));
+
+                  }, child: Text('Interests'))
 
 
             ],

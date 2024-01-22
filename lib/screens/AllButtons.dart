@@ -170,11 +170,6 @@ class _AllButtonsState extends State<AllButtons> {
         backgroundColor: Colors.black,
         shape: const CircleBorder(),
         elevation: 0,
-        // shape:  BeveledRectangleBorder(
-        //   borderRadius: BorderRadius.circular(30),
-        //   side: BorderSide(color: Colors.white,width: 1,style: BorderStyle.solid)
-        // ),
-
         child: const Icon(
           Icons.add,
           color: Colors.white,
