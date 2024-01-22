@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:testapp/widgets/custombuttons.dart';
@@ -13,6 +14,7 @@ class _AllButtonsState extends State<AllButtons> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Buttons'),
       ),
@@ -161,15 +163,52 @@ class _AllButtonsState extends State<AllButtons> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
-        shape: const CircleBorder(),
+        shape: CircleBorder(),
+elevation: 0,
+        // shape:  BeveledRectangleBorder(
+        //   borderRadius: BorderRadius.circular(30),
+        //   side: BorderSide(color: Colors.white,width: 1,style: BorderStyle.solid)
+        // ),
+        
         child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
         onPressed: () {},
+      ),
+      bottomNavigationBar: BottomAppBar(
+        notchMargin: 4,
+        shape: const CircularNotchedRectangle(),
+        color: Colors.black,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton(onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black
+                ),
+                child: Icon(Icons.home,color: Colors.white,)),
+            ElevatedButton(onPressed: (){}, style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black
+            ), child: Icon(Icons.chat,color: Colors.white,)),
+            ElevatedButton(onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black
+                ),
+
+                child: Icon(Icons.favorite,color: Colors.white,)),
+            ElevatedButton(onPressed: (){},
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black
+                ),
+                child: Icon(Icons.notifications,color: Colors.white,)),
+          ],
+        ),
+
       ),
     );
   }
