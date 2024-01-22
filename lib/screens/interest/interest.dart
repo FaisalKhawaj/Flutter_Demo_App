@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Interests extends StatelessWidget {
-    Interests({super.key});
+class Interests extends StatefulWidget {
+  Interests({super.key});
 
 
+  @override
+  State<Interests> createState() => _InterestListsState();
+}
+
+class _InterestListsState extends State<Interests> {
+
+  final _selectedInterests=<String>[];
   List<String>  interests=['Music','Films and Media','Sports & Fitness','Arts','Fashion','Travel & Outdoor','Home & Lifestyle','Education','Gaming','Health','A','Sports & Fitness Sports & Fitness','C','D','E','F',];
 
   @override
@@ -15,11 +22,11 @@ class Interests extends StatelessWidget {
         backgroundColor: Color.fromRGBO(0, 0, 0, 1) ,
         foregroundColor: Colors.white,
         leading:  Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
 
-            children: [
-              Padding(padding: EdgeInsets.only(left: 10),
+          children: [
+            Padding(padding: EdgeInsets.only(left: 10),
               child: IconButton(onPressed: (){},
                   style: ElevatedButton.styleFrom(
                       fixedSize: const Size(40,40),
@@ -28,10 +35,10 @@ class Interests extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                   ),
                   icon: const Icon(Icons.chevron_left)) ,
-              ),
+            ),
 
-            ],
-          ),
+          ],
+        ),
 
         // backgroundColor: Colof.,
       ),
@@ -44,14 +51,14 @@ class Interests extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20,),
-            const Text('Tell us your interests',style: TextStyle(
-              fontFamily: 'Comfortaa',
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-              color: Colors.white
-            ),
-            textAlign: TextAlign.left,
-            ),
+              const Text('Tell us your interests',style: TextStyle(
+                  fontFamily: 'Comfortaa',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white
+              ),
+                textAlign: TextAlign.left,
+              ),
               SizedBox(height: 10,),
               const Text('Select your interests that you love, we will curate the best videos for your feed',style: TextStyle(
                   fontFamily: 'Comfortaa',
@@ -63,61 +70,37 @@ class Interests extends StatelessWidget {
               SizedBox(height: 28,),
 
 
-
-
-        SizedBox(
-          height:
-          MediaQuery.of(context).size.height,
-          child:  GridView.builder(
-            shrinkWrap: true,
-
-              itemCount: interests.length,
-              itemBuilder: (context,index){
-                return Container(
-                  // height: 50,
-                  margin:const EdgeInsets.all(4),
-                  child:
-                    TextButton(
-                        style: TextButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(25, 25, 25, 1),
-                            shape:RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                            // fixedSize:Size(MediaQuery.of(context).size.width,30)
-                        ), onPressed: (){},
-                        child: Wrap(
-                          children: [
-                            Row(
-                              // mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  style: TextStyle(
-                                      fontFamily: 'Comfortaa',
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromRGBO(171, 171, 171, 1)
-                                  ),
-                                  softWrap: true,
-
-                                  maxLines: 3,
-                                  interests[index],textAlign: TextAlign.center,)
-                          ],
-                        )
+           Container(
+             child:  Wrap(
+               spacing: 10,
+               runAlignment: WrapAlignment.center,
+               runSpacing: 10,
+               children: List.generate(interests.length, (index) {
+              return   ChoiceChip(
+                checkmarkColor:Colors.white,
+                padding: EdgeInsets.symmetric(vertical: 4,horizontal: 20),
+                disabledColor: Colors.pink,
+                shape:  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                selectedColor: Color.fromRGBO(119, 40, 168, 1),
+                labelStyle: TextStyle(
+                  color: Colors.white
+                ),
+                backgroundColor: Color.fromRGBO(25, 25, 25,1),
+                label: Text(interests[index]), selected: _selectedInterests.contains(interests[index]),
+                onSelected:(value)=>setState(() {
+                  if(value){
+                    _selectedInterests.add(interests[index]);
+                  }else{
+                    _selectedInterests.remove(interests[index]);
+                  }
+                }) ,
+              );
+               }),
+             ),
+           )
 
 
 
-                          ],
-                        )),
-
-
-                );
-
-
-              },
-            gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
-                childAspectRatio: 3.5
-            ) ,),
-
-        )
 
 
 
