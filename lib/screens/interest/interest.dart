@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
+import 'package:testapp/widgets/customchoicechip.dart';
 
 class Interests extends StatefulWidget {
   Interests({super.key});
@@ -31,6 +32,18 @@ class _InterestListsState extends State<Interests> {
     'Tech',
   ];
 
+  void onSelectChipCallback(String interest,bool selected){
+    setState(() {
+      if(selected){
+        _selectedInterests.add(interest);
+      }else{
+        _selectedInterests.remove(interest);
+      }
+    });
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +59,10 @@ class _InterestListsState extends State<Interests> {
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+
+                  },
                   style: ElevatedButton.styleFrom(
                       fixedSize: const Size(40, 40),
                       foregroundColor: Colors.white,
@@ -68,7 +84,7 @@ class _InterestListsState extends State<Interests> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+             const SizedBox(
                 height: 20,
               ),
               const Text(
@@ -80,7 +96,7 @@ class _InterestListsState extends State<Interests> {
                     color: Colors.white),
                 textAlign: TextAlign.left,
               ),
-              SizedBox(
+             const SizedBox(
                 height: 10,
               ),
               const Text(
@@ -91,71 +107,27 @@ class _InterestListsState extends State<Interests> {
                     fontWeight: FontWeight.w600,
                     color: Color.fromRGBO(171, 171, 171, 1)),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 28,
               ),
 
 
-              Container(
-                child: Wrap(
+               Wrap(
                   spacing: 10,
                   runAlignment: WrapAlignment.center,
                   runSpacing: 10,
                   children: List.generate(interests.length, (index) {
-                    return ChoiceChip(
-                      showCheckmark: false,
-                      checkmarkColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 20),
-                      disabledColor: Colors.pink,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      selectedColor: const Color.fromRGBO(119, 40, 168, 1),
-                      labelStyle: const TextStyle(color: Colors.white),
-                      backgroundColor: const Color.fromRGBO(25, 25, 25, 1),
-                      label: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            interests[index],
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'Comfortaa',
-                                fontWeight: FontWeight.w500,
-                                color: _selectedInterests
-                                        .contains(interests[index])
-                                    ? Colors.white
-                                    : Color.fromRGBO(171, 171, 171, 1)),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                              _selectedInterests.contains(interests[index])
-                                  ? Icons.close
-                                  : Icons.add,
-                              size: 18,
-                              color:
-                                  _selectedInterests.contains(interests[index])
-                                      ? Colors.white
-                                      : const Color.fromRGBO(171, 171, 171, 1))
-                        ],
-                      ),
-                      selected: _selectedInterests.contains(interests[index]),
-                      onSelected: (value) => setState(() {
-                        if (value) {
-                          _selectedInterests.add(interests[index]);
-                        } else {
-                          _selectedInterests.remove(interests[index]);
-                        }
-                      }),
-                    );
+                    return
+                  CustomChoiceChip(label: interests[index],
+                      selected:_selectedInterests.contains(interests[index]),
+                      onSelected:(val)=>onSelectChipCallback(interests[index],val)  // passing value and selected to callback
+                  );
                   }),
                 ),
-              ),
 
 
-              SizedBox(height: 10,),
+
+            const  SizedBox(height: 10,), // for spacing
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 10,

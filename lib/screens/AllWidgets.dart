@@ -75,19 +75,26 @@ drawer: Drawer(
 
                 )),
             Center(
-              child:  Container(
-                width: 130,
-                height: 130,
-                alignment: Alignment.center,
-                margin:const EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image:const DecorationImage(
-                        image: const NetworkImage(
-                          'https://picsum.photos/200/300',
-                        ),
-                        fit: BoxFit.cover),
-                ),
+
+              child:Wrap(
+                children: [
+                  Container(
+                   constraints: BoxConstraints.expand(
+                     width: 100,
+                     height: 100,
+                   ),
+                    alignment: Alignment.center,
+                    margin:const EdgeInsets.symmetric(vertical: 20),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image:  NetworkImage(
+                            'https://picsum.photos/200/300',
+                          ),
+                          fit: BoxFit.cover),
+                    ),
+                  )
+                ],
               ) ,
             )
 
@@ -119,7 +126,6 @@ drawer: Drawer(
           // change app state...
           Navigator.pop(context); // close the drawer
         },
-
       ),
     ],
   ),
@@ -145,22 +151,56 @@ drawer: Drawer(
                   ),
                   child: const Text("Buttons",style: TextStyle(color: Colors.black),)
               ),
-            const   SizedBox(height: 10,),
+
+              const   SizedBox(height: 10,),
               GestureDetector(onTap: (){
                 Navigator.of(context).push(_createRoute(const ImageBgImage()));
-
               },
-                child:  ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
-                  child:  Image.network('https://picsum.photos/200/300',
-                      height: 240,
-                      width: 350,
-                      fit:BoxFit.cover
-                    // scale: ,
-
+              child:
+                Container(
+                  padding:const EdgeInsets.all(10),
+                  constraints:BoxConstraints.expand(
+                    width: MediaQuery.of(context).size.width-20,
+                    height: 450
+                  ) ,
+                  decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0, 2),
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                      )
+                    ],
+        color: Colors.red,
+                      image: DecorationImage(image: NetworkImage('https://picsum.photos/200/300'),fit: BoxFit.cover),
+        borderRadius: BorderRadius.all(Radius.circular(15))
                   ),
-                ) ,
+                  child: Stack(
+                    children: [
+                      Text('Title',style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),),
+                    const Positioned(
+                          top: 25,
+                          child: Text('Title',style: TextStyle(
+                        color: Colors.white,
+                      ),)),
+
+                     Positioned(
+                          bottom: 10,
+                          right: 0,
+                          child:ElevatedButton(onPressed: (){
+
+                          }, child:  Text('ElevatedButton',style: TextStyle(
+                            color: Colors.black87,
+                          ),))),
+                    ],
+                  ),
+                ),
               ),
+
               const SizedBox(height: 10,),
               ElevatedButton(onPressed: (){
                 Navigator.of(context).push(_createRoute(const RowsColumns()));
@@ -175,15 +215,15 @@ drawer: Drawer(
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
               ),),
-SizedBox(height: 10,),
+       const SizedBox(height: 10,),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
 backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                     fixedSize: Size(MediaQuery.of(context).size.width-50, 40)
                   ),
-                  onPressed: (){}, child: Text('ChefMaster App')),
-              SizedBox(height: 10,),
+                  onPressed: (){}, child:const Text('ChefMaster App')),
+            const  SizedBox(height: 10,),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -191,9 +231,12 @@ backgroundColor: Colors.black,
                       fixedSize: Size(MediaQuery.of(context).size.width-50, 40)
                   ),
                   onPressed: (){
-                    Navigator.of(context).push(_createRoute(Interests()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=>Interests())
+                    );
+                    // Navigator.of(context).push(_createRoute(Interests()));
 
-                  }, child: Text('Interests'))
+                  }, child:const Text('Interests'))
 
 
             ],

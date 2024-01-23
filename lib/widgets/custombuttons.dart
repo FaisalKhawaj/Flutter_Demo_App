@@ -30,13 +30,13 @@ class CustomButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
       icon!,
-        SizedBox(width: 10,),
+        const SizedBox(width: 10,),
         Text(name,style: TextStyle(
           fontSize: 13,
           fontFamily: 'Poppins',
 
         ),),
       ],
-    ):Text(name,style: TextStyle(fontSize: 12)));
+    ):Text(name,style: const TextStyle(fontSize: 12)));
   }
 }
